@@ -123,6 +123,28 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &91609332 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7649202511798430258, guid: 649b4cdbf9c8a8542b9f9a91028f9692, type: 3}
+  m_PrefabInstance: {fileID: 7649202511880958662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &91609335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91609332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2545c828f99004a9919159c01c4115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applePrefab: {fileID: 8574320316425199442, guid: 191ae1d614c779c45baefe2010170611, type: 3}
+  speed: 10
+  leftAndRightEdge: 10
+  chanceToChangeDirections: 0.02
+  secondsBetweenAppleDrops: 1
 --- !u!1 &792234105
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,8 +197,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 16
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
