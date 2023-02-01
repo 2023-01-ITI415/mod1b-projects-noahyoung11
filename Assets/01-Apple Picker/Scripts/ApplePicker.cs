@@ -25,6 +25,12 @@ public class ApplePicker : MonoBehaviour
         }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
     public void AppleDestroyed(){
         GameObject[] tAppleArray = GameObject.FindGameObjectsWithTag("Apple");
         foreach(GameObject tGO in tAppleArray){
@@ -34,11 +40,8 @@ public class ApplePicker : MonoBehaviour
         GameObject tBasketGO = basketList[basketIndex];
         basketList.RemoveAt(basketIndex);
         Destroy(tBasketGO);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(basketList.Count == 0){
+            SceneManager.LoadScene("Main-ApplePicker");
+        }
     }
 }
