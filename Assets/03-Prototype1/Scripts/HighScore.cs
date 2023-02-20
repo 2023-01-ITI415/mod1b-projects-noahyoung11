@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class HighScore : MonoBehaviour
 {
-    static public int score = 1000;
-    // Start is called before the first frame update
+    static public int score = 100;
     
     void Awake (){
         if(PlayerPrefs.HasKey("HighScore")){
@@ -15,11 +14,6 @@ public class HighScore : MonoBehaviour
         PlayerPrefs.SetInt("HighScore", score);
     }
     
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -29,4 +23,14 @@ public class HighScore : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", score);
         }
     }
+
+    public bool resetHighScoreNow = false;
+
+    void OnDrawGizmos(){
+        if(resetHighScoreNow){
+            resetHighScoreNow = false;
+            PlayerPrefs.SetInt("HighScore", 100);
+        }
+    }
+
 }

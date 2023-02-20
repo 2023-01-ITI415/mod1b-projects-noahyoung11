@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Set Dynamically")]
+    public Text scoreGT;
+    
+    
     public float speed = 0;
-    public TextMeshProUGUI countText;
-    public GameObject winTextObject;
-
     private Rigidbody rb;
-    private int count;
     private float movementX;
     private float movementY;
 
@@ -19,10 +20,20 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        count = 0;
+        
+        GameObject scoreGO = GameObject.Find("ScoreCounter");
+        scoreGT = scoreGO.GetComponent<Text>();
+        scoreGT.text = "0";
+    }
 
-        SetCountText();
-        winTextObject.SetActive(false);
+    public void RestartGame(){
+        SceneManager.LoadScene("Main-Prototype 1");
+    }
+
+    void Update(){
+        if(Goal.goalMet == true){
+            Invoke("RestartGame", .5f);
+        }
     }
 
     private void OnMove(InputValue movementValue)
@@ -31,13 +42,6 @@ public class PlayerController : MonoBehaviour
 
         movementX = movementVector.x;
         movementY = movementVector.y;
-    }
-
-    void SetCountText(){
-        countText.text = "Score: " + count.ToString();
-        if(count >= 43){
-            winTextObject.SetActive(true);
-        }
     }
 
     private void FixedUpdate()
@@ -50,9 +54,12 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("PickUp")){
             other.gameObject.SetActive(false);
-            count++;
-
-            SetCountText();
+            int score = int.Parse(scoreGT.text);
+            score += 10;
+            scoreGT.text = score.ToString();
+            if(score > HighScore.score){
+                HighScore.score = score;
+            }
         }
     }
 
